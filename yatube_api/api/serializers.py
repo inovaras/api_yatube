@@ -9,7 +9,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    group = GroupSerializer(read_only=True)
+    # author - не разрешать менять автора
 
     class Meta:
         model = Post
@@ -17,7 +17,6 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializers(serializers.ModelSerializer):
-    post = PostSerializer(read_only=True)
 
     class Meta:
         model = Comment

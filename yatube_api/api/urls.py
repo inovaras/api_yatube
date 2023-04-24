@@ -6,9 +6,9 @@ from .views import PostViewSet, GroupViewSet, CommentViewSet
 
 app_name = 'api'
 router = DefaultRouter()
-router.register(r'posts', PostViewSet) # GET, POST
-router.register(r'groups', GroupViewSet) # GET
-router.register(r'posts/(?P<post_id>\d+)/comments', CommentViewSet)  # GET, POST
+router.register(r'posts', PostViewSet)
+router.register(r'groups', GroupViewSet)
+router.register(r'posts/(?P<post_id>\d+)/comments', CommentViewSet)
 
 for url in router.urls:
     print(url)
