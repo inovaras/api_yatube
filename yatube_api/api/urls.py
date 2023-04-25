@@ -10,8 +10,7 @@ router.register(r'posts', PostViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'posts/(?P<post_id>\d+)/comments', CommentViewSet)
 
-for url in router.urls:
-    print(url)
+
 urlpatterns = [
     path('api/v1/', include(router.urls)),
     path('api/v1/api-token-auth/', views.obtain_auth_token)
