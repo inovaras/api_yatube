@@ -9,8 +9,9 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    # author - не разрешать менять автора
-    author = serializers.SlugRelatedField(read_only=True, slug_field="username")
+    author = serializers.SlugRelatedField(
+        read_only=True, slug_field="username"
+    )
 
     class Meta:
         model = Post
@@ -18,7 +19,9 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializers(serializers.ModelSerializer):
-    author = serializers.SlugRelatedField(read_only=True, slug_field="username")
+    author = serializers.SlugRelatedField(
+        read_only=True, slug_field="username"
+    )
     post = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:

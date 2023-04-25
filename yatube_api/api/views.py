@@ -1,14 +1,9 @@
-from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
-from rest_framework import permissions
 
-from posts.models import Post, Group, Comment
-from rest_framework.exceptions import PermissionDenied
-
-from .serializers import PostSerializer, GroupSerializer, CommentSerializers
 from .permissions import AuthorOrReadOnly
-# Create your views here.
+from posts.models import Post, Group, Comment
+from .serializers import PostSerializer, GroupSerializer, CommentSerializers
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -33,7 +28,12 @@ class CommentViewSet(viewsets.ModelViewSet):
     permission_classes = (AuthorOrReadOnly,)
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user, post=get_object_or_404(Post, pk=self.kwargs['post_id']))
+        serializer.save(
+            author=self.request.user,
+            post=get_object_or_404(Post, pk=self.kwargs['post_id']),
+        )
 
     def get_queryset(self):
-        return self.queryset.filter(post=get_object_or_404(Post, pk=self.kwargs['post_id']))
+        return self.queryset.filter(
+            post=get_object_or_404(Post, pk=self.kwargs['post_id'])
+        )
